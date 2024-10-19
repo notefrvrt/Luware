@@ -1,3 +1,7 @@
+local function callback(Text)
+end
+local NotificationBindable = Instance.new("BindableFunction")
+NotificationBindable.OnInvoke = callback
 local bootTime = os.time()
 print("Trianity init")
 _G.injected = true
@@ -27,7 +31,7 @@ end
 initialized = true
 initializedEvent:Fire()
 print(policyTable)
-wait(0.3)
+wait(0.6)
 local inithash = math.random(100, 1000)
 print(_G.Injected)
 if policyTable then
@@ -35,3 +39,10 @@ if policyTable then
 end
 print("Init Success")
 print("Time Take:", os.time() - bootTime)
+ 
+game.StarterGui:SetCore("SendNotification", {
+    Title = "TrianAPI";
+    Text = "Connected to roblox";
+    Duration = "5";
+    Callback = NotificationBindable;
+})
