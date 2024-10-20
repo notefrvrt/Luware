@@ -4,11 +4,11 @@ local NotificationBindable = Instance.new("BindableFunction")
 NotificationBindable.OnInvoke = callback
 local bootTime = os.time()
 print("Trianity init")
-_G.injected = true
+_G.Injected = true
 local PlayersService = game:GetService('Players')
 local isSubjectToChinaPolicies = true
 local policyTable
-local initialized = false
+_G.initialized = false
 local initAsyncCalledOnce = false
 local initializedEvent = Instance.new("BindableEvent")
 local PolicyService = {}
@@ -28,7 +28,7 @@ pcall(function() policyTable = game:GetService("PolicyService"):GetPolicyInfoFor
 	if policyTable then
 	isSubjectToChinaPolicies = policyTable["IsSubjectToChinaPolicies"]
 end
-initialized = true
+_G.initialized = true
 initializedEvent:Fire()
 print(policyTable)
 wait(0.6)
