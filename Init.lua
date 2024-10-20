@@ -1,4 +1,6 @@
-local function callback(Text)
+local signal = false
+local function callback(signal)
+	local signal = true
 end
 local NotificationBindable = Instance.new("BindableFunction")
 NotificationBindable.OnInvoke = callback
@@ -12,7 +14,7 @@ _G.initialized = false
 local initAsyncCalledOnce = false
 local initializedEvent = Instance.new("BindableEvent")
 local PolicyService = {}
-if initialized then return end
+if _G.initialized then return end
 	if initAsyncCalledOnce then
 	initializedEvent.Event:Wait()
 	return
@@ -30,7 +32,7 @@ pcall(function() policyTable = game:GetService("PolicyService"):GetPolicyInfoFor
 end
 _G.initialized = true
 initializedEvent:Fire()
-print(policyTable)
+print(policyTable, signal)
 wait(0.6)
 local inithash = math.random(100, 1000)
 print(_G.Injected)
@@ -46,3 +48,4 @@ game.StarterGui:SetCore("SendNotification", {
     Duration = "5";
     Callback = NotificationBindable;
 })
+print(signal)
